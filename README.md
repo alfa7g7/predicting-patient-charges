@@ -4,7 +4,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
 [![Docker](https://img.shields.io/badge/Docker-20.0+-blue.svg)](https://www.docker.com/)
 [![PyCaret](https://img.shields.io/badge/PyCaret-3.0+-orange.svg)](https://pycaret.org/)
-[![Azure](https://img.shields.io/badge/Azure-Live_Demo-blue.svg)](https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net)
+[![Azure](https://img.shields.io/badge/Azure-Live_Demo-blue.svg)](https://patient-charges-webapp-dvbucjebfeb5enhj.eastus2-01.azurewebsites.net)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Project Overview
@@ -88,7 +88,7 @@ Choose one of the following options to try the application:
 
 **No installation required!** Access the deployed application directly:
 
-**🔗 Live Demo**: **https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net**
+**🔗 Live Demo**: **https://patient-charges-webapp-dvbucjebfeb5enhj.eastus2-01.azurewebsites.net**
 
 Simply visit the link above and start making predictions immediately. The application is deployed on Azure Web App and ready to use.
 
@@ -197,7 +197,7 @@ Test the application with these realistic examples that demonstrate different ri
 
 **Example API Request**:
 ```bash
-curl -X POST https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net/predict_api \
+curl -X POST https://patient-charges-webapp-dvbucjebfeb5enhj.eastus2-01.azurewebsites.net/predict_api \
   -H "Content-Type: application/json" \
   -d '{
     "age": 30,
@@ -257,7 +257,7 @@ docker rmi <image_name>
 
 The application is **currently deployed and running** on Azure Web App:
 
-- **🌐 Production URL**: https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net
+- **🌐 Production URL**: https://patient-charges-webapp-dvbucjebfeb5enhj.eastus2-01.azurewebsites.net
 - **🐳 Container Registry**: `patientchargesacr.azurecr.io`
 - **📦 Image**: `patientchargesacr.azurecr.io/patient-charges-app:latest`
 - **🏗️ Resource Group**: `patient-charges-rg`
