@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict Insurance Bill</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        option {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Insurance Bill</h1>
+        
+        <form method="POST" action="/predict">
+            <input type="number" name="age" placeholder="Age" required min="18" max="100">
+            
+            <select name="sex" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            
+            <input type="number" step="0.01" name="bmi" placeholder="BMI" required min="10" max="50">
+            
+            <input type="number" name="children" placeholder="Number of Children" required min="0" max="10">
+            
+            <select name="smoker" required>
+                <option value="" disabled selected>Smoker?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            
+            <select name="region" required>
+                <option value="" disabled selected>Select Region</option>
+                <option value="northeast">Northeast</option>
+                <option value="northwest">Northwest</option>
+                <option value="southeast">Southeast</option>
+                <option value="southwest">Southwest</option>
+            </select>
+            
+            <button type="submit">Predict</button>
+        </form>
+        
+        {% if pred %}
+        <div class="result">
+            {{ pred }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html> 
