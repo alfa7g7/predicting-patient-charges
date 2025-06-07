@@ -522,7 +522,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Project Maintainer**: Alfonso  
+**Project Maintainer**: alfa7g7  
 **GitHub**: [@alfa7g7](https://github.com/alfa7g7)  
 **Repository**: [predicting-patient-charges](https://github.com/alfa7g7/predicting-patient-charges)
 
