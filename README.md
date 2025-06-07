@@ -72,12 +72,17 @@ predicting-patient-charges/
 │
 ├── 🐍 train_model.py               # Model training script
 ├── 🐍 app.py                       # Flask web application
+├── 🐍 test_app.py                  # Application testing suite
 │
 ├── 📁 templates/                   # HTML templates
 │   └── 🌐 home.html               # Web interface
 │
-└── 📁 models/                      # Trained model artifacts (generated)
-    └── 🤖 deployment_28042020.pkl # Serialized ML pipeline
+├── 📁 models/                      # ML model artifacts
+│   └── 🤖 deployment_28042020.pkl # Trained model pipeline
+│
+└── 📁 .github/                     # GitHub Actions workflows
+    └── 📁 workflows/
+        └── ⚙️ ci-cd-pipeline.yml  # CI/CD automation
 ```
 
 ## 🚀 Quick Start - Two Options Available
@@ -438,6 +443,7 @@ scikit-learn>=1.0.0
 - [x] **GitHub Actions CI/CD** - Automated testing and deployment pipeline
 - [x] **Docker Containerization** - Consistent deployment across environments
 - [x] **Comprehensive Testing Suite** - Model validation and application testing
+- [x] **Professional Project Structure** - Organized models/ directory following MLOps best practices
 
 ### 🔄 MLOps Improvements (Next Steps)
 - [ ] Automated model retraining pipeline

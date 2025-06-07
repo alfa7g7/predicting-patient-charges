@@ -17,4 +17,4 @@ r1 = setup(data=insurance,
 lr = create_model('lr')
 
 # save pipeline/model
-save_model(lr, model_name='deployment_28042020') 
+save_model(lr, model_name='models/deployment_28042020') 
