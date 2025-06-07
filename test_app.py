@@ -13,14 +13,14 @@ class TestPatientChargesApp(unittest.TestCase):
     
     def test_model_file_exists(self):
         """Test that the model file exists"""
-        model_path = 'deployment_28042020.pkl'
+        model_path = 'models/deployment_28042020.pkl'
         self.assertTrue(os.path.exists(model_path), f"Model file {model_path} not found")
         print("✅ Model file exists")
     
     def test_model_file_loadable(self):
         """Test that the model file can be loaded with pickle"""
         try:
-            with open('deployment_28042020.pkl', 'rb') as f:
+            with open('models/deployment_28042020.pkl', 'rb') as f:
                 model = pickle.load(f)
             self.assertIsNotNone(model)
             print("✅ Model file is loadable with pickle")
@@ -106,6 +106,12 @@ class TestPatientChargesApp(unittest.TestCase):
         self.assertTrue(os.path.exists('templates'))
         self.assertTrue(os.path.exists('templates/home.html'))
         print("✅ Templates directory validation passed")
+    
+    def test_models_directory(self):
+        """Test that models directory exists with deployment model"""
+        self.assertTrue(os.path.exists('models'))
+        self.assertTrue(os.path.exists('models/deployment_28042020.pkl'))
+        print("✅ Models directory validation passed")
 
 if __name__ == '__main__':
     unittest.main(verbosity=2) 
