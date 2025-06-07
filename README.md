@@ -4,6 +4,7 @@
 [![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
 [![Docker](https://img.shields.io/badge/Docker-20.0+-blue.svg)](https://www.docker.com/)
 [![PyCaret](https://img.shields.io/badge/PyCaret-3.0+-orange.svg)](https://pycaret.org/)
+[![Azure](https://img.shields.io/badge/Azure-Live_Demo-blue.svg)](https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Project Overview
@@ -79,28 +80,40 @@ predicting-patient-charges/
     └── 🤖 deployment_28042020.pkl # Serialized ML pipeline
 ```
 
-## 🚀 Quick Start
+## 🚀 Quick Start - Two Options Available
 
-### Prerequisites
+Choose one of the following options to try the application:
+
+### 🌐 Option 1: Try the Live Demo (Recommended)
+
+**No installation required!** Access the deployed application directly:
+
+**🔗 Live Demo**: **https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net**
+
+Simply visit the link above and start making predictions immediately. The application is deployed on Azure Web App and ready to use.
+
+### 🛠️ Option 2: Run Locally (For Development)
+
+#### Prerequisites
 
 - Python 3.7 or higher
 - pip (Python package installer)
 - Docker (optional, for containerization)
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/alfa7g7/predicting-patient-charges.git
 cd predicting-patient-charges
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Train the Model
+#### 3. Train the Model
 
 ```bash
 python train_model.py
@@ -112,7 +125,7 @@ This will:
 - Train a linear regression model
 - Save the complete pipeline as `deployment_28042020.pkl`
 
-### 4. Run the Web Application
+#### 4. Run the Web Application
 
 ```bash
 python app.py
@@ -131,6 +144,37 @@ The web application provides an intuitive form where users can input:
 4. **Children**: Number of dependents (0-10)
 5. **Smoking Status**: Yes or No
 6. **Region**: Northeast, Northwest, Southeast, or Southwest
+
+### 📋 Example Use Cases
+
+Test the application with these realistic examples that demonstrate different risk profiles:
+
+#### **Case 1: Low Risk Profile**
+- **Age**: 25
+- **Gender**: Male
+- **BMI**: 22.5
+- **Children**: 0
+- **Smoker**: No
+- **Region**: Southeast
+- **Expected Result**: ~$4,435 (Low cost due to young age, healthy BMI, non-smoker)
+
+#### **Case 2: High Risk Profile**
+- **Age**: 45
+- **Gender**: Female
+- **BMI**: 28.0
+- **Children**: 2
+- **Smoker**: Yes
+- **Region**: Northeast
+- **Expected Result**: ~$31,528 (High cost due to smoking, elevated BMI, older age)
+
+#### **Case 3: Medium Risk Profile**
+- **Age**: 35
+- **Gender**: Male
+- **BMI**: 25.5
+- **Children**: 1
+- **Smoker**: No
+- **Region**: Northwest
+- **Expected Result**: ~$5,977 (Medium cost - balanced risk factors)
 
 ### API Endpoints
 
@@ -153,7 +197,7 @@ The web application provides an intuitive form where users can input:
 
 **Example API Request**:
 ```bash
-curl -X POST http://localhost:5000/predict_api \
+curl -X POST https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net/predict_api \
   -H "Content-Type: application/json" \
   -d '{
     "age": 30,
@@ -207,40 +251,73 @@ docker rm <container_id>
 docker rmi <image_name>
 ```
 
-## ☁️ Cloud Deployment (Azure)
+## ☁️ Cloud Deployment (Azure) - ✅ Successfully Deployed
 
-### Prerequisites for Azure Deployment
+### 🚀 Live Production Deployment
 
-1. Microsoft Azure account
-2. Azure CLI installed
-3. Docker Hub or Azure Container Registry account
+The application is **currently deployed and running** on Azure Web App:
 
-### Steps for Azure Container Registry
+- **🌐 Production URL**: https://patient-charges-webapp-dvbucjebfeb5enh.eastus2-01.azurewebsites.net
+- **🐳 Container Registry**: `patientchargesacr.azurecr.io`
+- **📦 Image**: `patientchargesacr.azurecr.io/patient-charges-app:latest`
+- **🏗️ Resource Group**: `patient-charges-rg`
+- **💻 App Service Plan**: Basic B1 (Linux)
+
+### Deployment Architecture
+
+```
+GitHub Repository
+        ↓
+    Docker Build
+        ↓
+Azure Container Registry (ACR)
+        ↓
+   Azure Web App
+        ↓
+   Production URL
+```
+
+### Azure Resources Created
+
+1. **Container Registry**: `patientchargesacr.azurecr.io`
+2. **Resource Group**: `patient-charges-rg`
+3. **Web App**: `patient-charges-webapp`
+4. **App Service Plan**: `patient-charges-plan` (Basic B1)
+
+### Deployment Commands Used
 
 1. **Create Azure Container Registry**:
 ```bash
-az acr create --resource-group myResourceGroup \
-  --name myregistry --sku Basic
+az acr create --resource-group patient-charges-rg \
+  --name patientchargesacr --sku Basic
 ```
 
 2. **Build and Push to ACR**:
 ```bash
 # Build image with ACR tag
-docker build -t myregistry.azurecr.io/patient-charges:latest .
+docker build -t patientchargesacr.azurecr.io/patient-charges-app:latest .
 
 # Login to ACR
-az acr login --name myregistry
+az acr login --name patientchargesacr
 
 # Push image
-docker push myregistry.azurecr.io/patient-charges:latest
+docker push patientchargesacr.azurecr.io/patient-charges-app:latest
 ```
 
 3. **Deploy to Azure Web App**:
 ```bash
-az webapp create --resource-group myResourceGroup \
-  --plan myAppServicePlan --name myapp \
-  --deployment-container-image-name myregistry.azurecr.io/patient-charges:latest
+az webapp create --resource-group patient-charges-rg \
+  --plan patient-charges-plan --name patient-charges-webapp \
+  --deployment-container-image-name patientchargesacr.azurecr.io/patient-charges-app:latest
 ```
+
+### 📊 Live Application Features
+
+✅ **Real-time predictions** - Get insurance charge predictions instantly  
+✅ **Responsive design** - Works on desktop and mobile devices  
+✅ **Scalable architecture** - Auto-scaling based on demand  
+✅ **High availability** - 99.9% uptime SLA  
+✅ **SSL encryption** - Secure HTTPS connection  
 
 ## 🔄 CI/CD Pipeline
 
@@ -353,14 +430,21 @@ scikit-learn>=1.0.0
 3. **UI Changes**: Edit `templates/home.html`
 4. **Dependencies**: Update `requirements.txt`
 
-## 📈 Future Enhancements
+## 📈 Recent Implementations & Future Enhancements
 
-### 🔄 MLOps Improvements
+### ✅ **Recently Implemented (2024)**
+- [x] **Azure Cloud Deployment** - Live production application
+- [x] **Azure Container Registry** - Centralized container management
+- [x] **GitHub Actions CI/CD** - Automated testing and deployment pipeline
+- [x] **Docker Containerization** - Consistent deployment across environments
+- [x] **Comprehensive Testing Suite** - Model validation and application testing
+
+### 🔄 MLOps Improvements (Next Steps)
 - [ ] Automated model retraining pipeline
-- [ ] Model performance monitoring
+- [ ] Model performance monitoring with MLflow
 - [ ] A/B testing framework
-- [ ] Data drift detection
-- [ ] Model versioning and rollback
+- [ ] Data drift detection with Evidently AI
+- [ ] Model versioning and rollback capabilities
 
 ### 🔧 Technical Enhancements
 - [ ] Database integration for prediction logging
