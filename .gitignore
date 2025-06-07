@@ -25,9 +25,18 @@ venv/
 env/
 ENV/
 
-# PyCaret models
-*.pkl
-deployment_*
+# PyCaret models (keep deployment file for production)
+# *.pkl
+# deployment_*
+
+# Test reports
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
 
 # IDE
 .vscode/

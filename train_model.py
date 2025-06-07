@@ -4,14 +4,17 @@ insurance = get_data('insurance')
 
 # init environment
 from pycaret.regression import *
-r1 = setup(insurance, target = 'charges', session_id = 123,
-           normalize = True,
-           polynomial_features = True, trigonometry_features = True,
-           feature_interaction=True,
-           bin_numeric_features= ['age', 'bmi'])
+
+# Setup with PyCaret 3.x syntax
+r1 = setup(data=insurance, 
+           target='charges', 
+           session_id=123,
+           normalize=True,
+           polynomial_features=True,
+           train_size=0.8)
 
 # train a model
 lr = create_model('lr')
 
 # save pipeline/model
-save_model(lr, model_name = 'deployment_28042020') 
+save_model(lr, model_name='deployment_28042020') 

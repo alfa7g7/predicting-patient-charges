@@ -1,18 +1,19 @@
-FROM python:3.7
-
-RUN pip install virtualenv
-ENV VIRTUAL_ENV=/venv
-RUN virtualenv venv -p python3
-ENV PATH="VIRTUAL_ENV/bin:$PATH"
+FROM python:3.10
 
 WORKDIR /app
-ADD . /app
 
-# install dependencies
-RUN pip install -r requirements.txt
+# Copy requirements and install dependencies first (for better caching)
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# expose port
+# Copy all application files
+COPY . /app/
+
+# Train the model first
+RUN python train_model.py
+
+# Expose port
 EXPOSE 5000
 
-# run application
+# Run application
 CMD ["python", "app.py"] 

@@ -242,6 +242,61 @@ az webapp create --resource-group myResourceGroup \
   --deployment-container-image-name myregistry.azurecr.io/patient-charges:latest
 ```
 
+## 🔄 CI/CD Pipeline
+
+This project includes a comprehensive CI/CD pipeline using **GitHub Actions** that automatically validates, builds, and tests the application.
+
+### Pipeline Features
+
+- **🧪 Automated Testing**: Runs unit tests and model validation
+- **🐳 Docker Build**: Builds and tests Docker containers
+- **🔒 Security Scanning**: Vulnerability scanning with Trivy
+- **📊 Test Coverage**: Comprehensive ML model and application testing
+- **🚀 Deployment Simulation**: Production-ready deployment workflow
+
+### Pipeline Stages
+
+1. **Test Stage**
+   - Model loading and prediction validation
+   - Data validation with multiple test cases
+   - Requirements and Dockerfile validation
+   - Python 3.10 compatibility testing
+
+2. **Docker Build Stage**
+   - Multi-platform Docker image building
+   - Container health checks
+   - Application responsiveness testing
+
+3. **Security Stage**
+   - Vulnerability scanning
+   - Security compliance checks
+
+4. **Deploy Stage**
+   - Production deployment simulation
+   - Deployment summary generation
+
+### Running Tests Locally
+
+```bash
+# Install test dependencies
+pip install pytest requests
+
+# Run all tests
+python test_app.py
+
+# Run with pytest
+pytest test_app.py -v
+```
+
+### GitHub Actions Triggers
+
+The pipeline automatically runs on:
+- Push to main branch
+- Pull requests to main branch
+- Manual workflow dispatch
+
+[![CI/CD Pipeline](https://github.com/alfa7g7/predicting-patient-charges/actions/workflows/ci-cd-pipeline.yml/badge.svg)](https://github.com/alfa7g7/predicting-patient-charges/actions/workflows/ci-cd-pipeline.yml)
+
 ## 🔬 Model Details
 
 ### Algorithm
