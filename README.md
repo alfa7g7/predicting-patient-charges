@@ -91,7 +91,7 @@ Choose one of the following options to try the application:
 
 ### 🌐 Option 1: Try the Live Demo (Recommended)
 
-The link if off due to values to keep it online in azure.
+The link is off due to values to keep it online in azure.
 **No installation required!** Access the deployed application directly:
 
 **🔗 Live Demo**: **https://patient-charges-webapp-dvbucjebfeb5enhj.eastus2-01.azurewebsites.net**
